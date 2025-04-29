@@ -1,0 +1,14 @@
+# VS Code files
+.vscode/
+.history/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Node modules (if needed in future)
+node_modules/
+
+# Environment variables
+.env
+.env.local
