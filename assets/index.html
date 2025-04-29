@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediix - Opinion Trading Platform</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        space: ['Space Grotesk', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: {
+                            purple: '#b026ff',
+                            blue: '#00ffff',
+                            green: '#39ff14'
+                        },
+                        dark: '#0f172a'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px #b026ff, 0 0 20px #b026ff, 0 0 30px #b026ff;
+            }
+            to {
+                box-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+            }
+        }
+
+        .market-card {
+            transition: transform 0.3s ease;
+        }
+
+        .market-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .prediction-bar {
+            transition: width 0.5s ease;
+        }
+
+        .ticker {
+            animation: ticker 20s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-dark text-white font-inter min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-dark/90 backdrop-blur-lg z-50 border-b border-neon-purple/20">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-space font-bold bg-gradient-to-r from-neon-purple to-neon-blue bg-clip-text text-transparent">
+                    Prediix
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-neon-purple/20 hover:bg-neon-purple/30 px-4 py-2 rounded-lg transition-all">
+                        <i class="fas fa-wallet mr-2"></i>
+                        ₹0
+                    </button>
+                    <button class="bg-neon-purple/20 hover:bg-neon-purple/30 p-2 rounded-lg transition-all">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- XP Booster Banner -->
+    <div class="bg-gradient-to-r from-neon-purple/20 to-neon-blue/20 py-2 px-4 mt-16">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <span class="text-neon-purple">🎯</span>
+                    <span>2X XP Booster Active!</span>
+                </div>
+                <span class="text-sm text-gray-400">23:45:12 remaining</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="pt-8 pb-12 px-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-space font-bold mb-6 animate-pulse-slow">
+                Predict & Earn
+            </h1>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                Trade your opinions on real-world outcomes and earn profits in real-time
+            </p>
+            <button class="bg-gradient-to-r from-neon-purple to-neon-blue text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-all animate-glow">
+                Start Trading Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Live Ticker -->
+    <div class="bg-neon-purple/10 py-2 overflow-hidden">
+        <div class="ticker whitespace-nowrap text-neon-blue">
+            🔥 TSLA up by 23% • BTC reaches new ATH • India vs AUS Semi-Finals • US Elections 2024 • FIFA World Cup Qatar
+        </div>
+    </div>
+
+    <!-- Market Cards Section -->
+    <section class="py-8 px-4">
+        <div class="container mx-auto">
+            <!-- Filters -->
+            <div class="flex overflow-x-auto pb-4 mb-6 space-x-4 scrollbar-hide">
+                <button class="bg-neon-purple text-white px-6 py-2 rounded-full whitespace-nowrap">
+                    🔥 Trending
+                </button>
+                <button class="bg-neon-purple/20 hover:bg-neon-purple/30 px-6 py-2 rounded-full whitespace-nowrap">
+                    ⚽ Sports
+                </button>
+                <button class="bg-neon-purple/20 hover:bg-neon-purple/30 px-6 py-2 rounded-full whitespace-nowrap">
+                    📰 News
+                </button>
+                <button class="bg-neon-purple/20 hover:bg-neon-purple/30 px-6 py-2 rounded-full whitespace-nowrap">
+                    🏛️ Politics
+                </button>
+                <button class="bg-neon-purple/20 hover:bg-neon-purple/30 px-6 py-2 rounded-full whitespace-nowrap">
+                    ⏰ Ending Soon
+                </button>
+            </div>
+
+            <!-- Market Stats -->
+            <div class="flex overflow-x-auto mb-8 space-x-4 scrollbar-hide">
+                <div class="bg-neon-purple/10 rounded-lg p-4 min-w-[200px]">
+                    <div class="text-sm text-gray-400">24h Volume</div>
+                    <div class="text-xl font-bold">₹1.2M</div>
+                </div>
+                <div class="bg-neon-purple/10 rounded-lg p-4 min-w-[200px]">
+                    <div class="text-sm text-gray-400">Active Markets</div>
+                    <div class="text-xl font-bold">234</div>
+                </div>
+                <div class="bg-neon-purple/10 rounded-lg p-4 min-w-[200px]">
+                    <div class="text-sm text-gray-400">Total Users</div>
+                    <div class="text-xl font-bold">12.5K</div>
+                </div>
+            </div>
+
+            <!-- Market Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Market Card 1 -->
+                <div class="market-card bg-dark border border-neon-purple/30 rounded-xl p-6 hover:border-neon-purple transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-neon-purple/20 text-neon-purple text-sm px-3 py-1 rounded-full">🔥 HOT</span>
+                        <span class="text-sm text-gray-400">24h left</span>
+                    </div>
+                    <h3 class="text-xl font-space font-bold mb-4">Will India reach 5 trillion GDP before 2026?</h3>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>YES</span>
+                            <span>72%</span>
+                        </div>
+                        <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="prediction-bar h-full bg-gradient-to-r from-neon-purple to-neon-blue" style="width: 72%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>NO</span>
+                            <span>28%</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between text-sm text-gray-400 mb-4">
+                        <span>Volume: ₹234K</span>
+                        <span>1.8x Payout</span>
+                    </div>
+                    <button class="w-full bg-neon-purple/20 hover:bg-neon-purple/30 py-3 rounded-lg transition-all">
+                        Trade Now
+                    </button>
+                </div>
+
+                <!-- Market Card 2 -->
+                <div class="market-card bg-dark border border-neon-purple/30 rounded-xl p-6 hover:border-neon-purple transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-neon-green/20 text-neon-green text-sm px-3 py-1 rounded-full">NEW</span>
+                        <span class="text-sm text-gray-400">3d left</span>
+                    </div>
+                    <h3 class="text-xl font-space font-bold mb-4">Will Bitcoin cross $100k in 2024?</h3>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>YES</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="prediction-bar h-full bg-gradient-to-r from-neon-green to-neon-blue" style="width: 85%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>NO</span>
+                            <span>15%</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between text-sm text-gray-400 mb-4">
+                        <span>Volume: ₹567K</span>
+                        <span>1.2x Payout</span>
+                    </div>
+                    <button class="w-full bg-neon-purple/20 hover:bg-neon-purple/30 py-3 rounded-lg transition-all">
+                        Trade Now
+                    </button>
+                </div>
+
+                <!-- Market Card 3 -->
+                <div class="market-card bg-dark border border-neon-purple/30 rounded-xl p-6 hover:border-neon-purple transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-neon-blue/20 text-neon-blue text-sm px-3 py-1 rounded-full">⚽ SPORTS</span>
+                        <span class="text-sm text-gray-400">12h left</span>
+                    </div>
+                    <h3 class="text-xl font-space font-bold mb-4">Will India win against Australia in Semi-Finals?</h3>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>YES</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="prediction-bar h-full bg-gradient-to-r from-neon-blue to-neon-purple" style="width: 65%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>NO</span>
+                            <span>35%</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between text-sm text-gray-400 mb-4">
+                        <span>Volume: ₹890K</span>
+                        <span>2.1x Payout</span>
+                    </div>
+                    <button class="w-full bg-neon-purple/20 hover:bg-neon-purple/30 py-3 rounded-lg transition-all">
+                        Trade Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Action Button -->
+    <button class="fixed bottom-6 right-6 bg-gradient-to-r from-neon-purple to-neon-blue p-4 rounded-full shadow-lg hover:opacity-90 transition-all animate-glow">
+        <i class="fas fa-plus text-xl"></i>
+    </button>
+
+    <!-- Tutorial Button -->
+    <button class="fixed bottom-6 left-6 bg-neon-purple/20 p-4 rounded-full shadow-lg hover:bg-neon-purple/30 transition-all">
+        <i class="fas fa-lightbulb text-xl text-neon-purple"></i>
+    </button>
+
+    <script>
+        // Simple dark/light mode toggle (default is dark)
+        document.documentElement.classList.add('dark');
+    </script>
+</body>
+</html>
